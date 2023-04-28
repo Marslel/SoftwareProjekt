@@ -1,3 +1,3 @@
 # SoftwareProjekt
 
-Wir wird eine KI von dem Kartenspiel Nope entwickelt.
+In diesem Repo wird eine KI von das Kartenspiel Nope entwickelt.
