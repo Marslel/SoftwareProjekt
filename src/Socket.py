@@ -1,6 +1,7 @@
 import asyncio
 import socketio
 import sys
+import Requests
 
 sio = socketio.Server()
 
@@ -42,18 +43,10 @@ def userLeft(username):
     print('User', username, 'has left.')
 
 def main(username):
+    loginData = Requests.login()
     sio.connect('http://localhost:8000', headers={'X-Username': username})
 
     sio.wait()
 
 if __name__ == '__main__':
     main(sys.argv[1] if len(sys.argv) > 1 else None)
-
-
-
-def client():
-    sio = socketio.Client()
-
-
-if __name__ == '__main__':
-    client()
