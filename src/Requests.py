@@ -3,12 +3,20 @@ import requests
 #data = {'username': 'Marsle', 'password': 'Software', 'firstname': 'Marcel', 'lastname': 'Bergen'}
 
 
-def login():
+def login(username, password):
     #Login Daten
-    data = {'username': 'Marsle', 'password': 'Software'}
+    data = {'username': username, 'password': password}
 
     #Der Post request zum Login
-    r = requests.post('https://nope-server.azurewebsites.net/api/auth/login', json=data)
+    access = requests.post('https://nope-server.azurewebsites.net/api/auth/login', json=data)
 
     #Der Accestoken zur Authentifizierung
-    return r
+    return access
+
+def register(username, password, firstName, lastName):
+
+    data = {'username': username, 'password': password, 'firstname': firstName, 'lastname': lastName}
+
+    message = requests.post('https://nope-server.azurewebsites.net/api/auth/register', json=data)
+
+    return message
