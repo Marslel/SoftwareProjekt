@@ -8,4 +8,4 @@ Mit der `def showFrame(self, cont):` Methode kann man nach wünsch das aktuelle 
 
 ## Gui Frames
 ##### Login
-![The San Juan Mountains are beautiful!](C:\Users\berge\Desktop\GuiLogin.PNG "San Juan Mountains")
+![The San Juan Mountains are beautiful!](/assets/Login/electrocat.png)
