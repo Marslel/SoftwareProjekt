@@ -1,16 +1,12 @@
-import asyncio
+
 import socketio
-import sys
-import Requests
+import json
 
-sio = socketio.Server()
-
+sio = socketio.Client()
 
 @sio.event
 def connect():
     print('Connected')
-    result = sio.call('sum', {'numbers': [1, 2]})
-    print(result)
 
 @sio.event
 def connectError(e):
@@ -21,32 +17,29 @@ def connectError(e):
 def disconnect():
     print('Disconnected')
 
-@sio.event
-def mult(data):
-    return data['numbers'][0] * data['numbers'][1]
+# In dieser Methode wird ein call ausgeführt der ein Tunier erstellt, mit der Anzahl der Best of Matches
+def tournamentCreate(matches):
+    message = sio.call("tournament:create", matches)
+    print(message)
 
-@sio.event
-def clientCount(count):
-    print('There are', count, 'connected clients')
+# Hier kann man ein vorhandenes Turnier erstellen mit der TurnierID
+def tournamentJoin(tournamentID):
+    sio.emit("tournament:join", json.dumps({"tournamentId": tournamentID}))
+
+# Hier kann man ein Tunier verlassen
+def leave_tournament():
+    sio.emit("tournament:leave")
+
+# Hier kann man ein Tunier starten
+def start_tournament():
+    message = sio.call("tournament:start")
+    print(message)
 
 
-@sio.event
-def roomCount(count):
-    print('There are', count, 'clients in my room')
-
-@sio.event
-def userJoined(username):
-    print('User', username, 'has joined.')
-
-@sio.event
-def userLeft(username):
-    print('User', username, 'has left.')
-
-def main(username):
-    loginData = Requests.login()
-    sio.connect('http://localhost:8000', headers={'X-Username': username})
+def main(accessToken):
+    # Hier stellt man eine Verbindung mit dem Server auf
+    sio.connect("https://nope-server.azurewebsites.net", auth={'token': accessToken})
 
     sio.wait()
 
-if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else None)
+
