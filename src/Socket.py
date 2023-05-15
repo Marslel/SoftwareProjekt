@@ -35,6 +35,13 @@ def start_tournament():
     message = sio.call("tournament:start")
     print(message)
 
+def gameState():
+    state = sio.emit("game:state")
+    return state
+
+def makeMove(move):
+    message = sio.call("game:makeMove", move)
+    print(message)
 
 def main(accessToken):
     # Hier stellt man eine Verbindung mit dem Server auf

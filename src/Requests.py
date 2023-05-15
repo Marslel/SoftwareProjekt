@@ -24,3 +24,4 @@ def register(username, password, firstName, lastName):
     message = requests.post('https://nope-server.azurewebsites.net/api/auth/register', json=data)
 
     return message
+
