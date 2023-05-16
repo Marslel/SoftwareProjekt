@@ -1,0 +1,1 @@
+{"type": "put", "card1": {"type": "number", "color": "red", "value": "2", "select?": "number", "selectValue?": "number", "selectedColor?": "red"}, "card2": "card2_value", "card3": "card3_value", "reason": "reason_value"}

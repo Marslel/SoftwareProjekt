@@ -1,0 +1,78 @@
+{
+  "matchId": "1",
+  "gameId": "1",
+  "topCard": {
+    "type": "number",
+    "color": "red",
+    "value": "2",
+    "select?": "number",
+    "selectValue?": "number",
+    "selectedColor?": "red"
+  },
+  "lastTopCard": {
+    "type": "number",
+    "color": "yellow",
+    "value": "2",
+    "select?": "number",
+    "selectValue?": "number",
+    "selectedColor?": "red"
+  },
+  "drawPileSize": 19,
+  "players": [
+    {
+      "id": "player1 id",
+      "username": "Marsle",
+      "handSize": 4
+    },
+    {
+      "id": "player2 id",
+      "username": "Marsle",
+      "handSize": 3
+    }
+  ],
+  "hand": [{
+    "type": "number",
+    "color": "red",
+    "value": "2",
+    "select?": "number",
+    "selectValue?": "number",
+    "selectedColor?": "red"}, {
+      "type": "number",
+    "color": "yellow",
+    "value": "2",
+    "select?": "number",
+    "selectValue?": "number",
+    "selectedColor?": "red"}],
+  "handSize": 4,
+  "currentPlayer": {
+    "id": "player1 id",
+    "username": "Marsle"
+  },
+  "currentPlayerIdx": 0,
+  "prevPlayer": {
+    "id": "player2 id",
+    "username": "player2 username"
+  },
+  "prevPlayerIdx": 1,
+  "prevTurnCards": [{
+    "type": "number",
+    "color": "red",
+    "value": "2",
+    "select?": "number",
+    "selectValue?": "number",
+    "selectedColor?": "red"},
+    {
+    "type": "number",
+    "color": "red",
+    "value": "2",
+    "select?": "number",
+    "selectValue?": "number",
+    "selectedColor?": "red"}],
+  "lastMove": {
+    "type": "number",
+    "color": "red",
+    "value": "2",
+    "select?": "number",
+    "selectValue?": "number",
+    "selectedColor?": "red"}
+}

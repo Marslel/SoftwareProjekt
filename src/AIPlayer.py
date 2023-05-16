@@ -1,65 +1,100 @@
 import random
 import json
+import Socket
 
-#Schnittstelle noch hinzufügen
-def play_nope(state, userID):
+
+# JSON-Datei lesen
+with open('move.json', 'r') as file:
+    json_data = json.load(file)
+
+# JSON-Datei lesen
+with open('stateTest.json', 'r') as file:
+    state = json.load(file)
+
+# JSON-Datei lesen
+with open('hand.json', 'r') as file:
+    HAND = json.load(file)
+
+# Move-Objekt erstellen
+class Move:
+    def __init__(self, type, card1, card2, card3, reason):
+        self.type = type
+        self.card1 = card1
+        self.card2 = card2
+        self.card3 = card3
+        self.reason = reason
+
+
+
+def play_nope(state):
 
     players = state['players']
     currentPlayerIDx = state['currentPlayerIdx']
     currentPlayer = players[currentPlayerIDx]
-    hands = state['hand'][currentPlayerIDx]
+    hands = state['hand']
+    handSize = state['handSize']
     currentCard = state['topCard']
     nopeUsed = False
 
+    moveCard = 0
     # Überprüfen, ob currentPlayerIdx unserer ID entspricht
-    if currentPlayer['id'] == userID:
+    if currentPlayer['username'] == "Marsle":
         print(f"\n{currentPlayer['username']}'s turn:")
-        print(f"Your hand: {hands}")
 
+        size = int(handSize)
         if currentCard:
             print(f"Current card: {currentCard}")
 
-        action = get_player_action()
+        isColor = False
 
-        if action == 'play':
-            card_index = get_card_to_play(hands)
-            if card_index is None:
-                print("Invalid card.")
-                return
+        for i in range(handSize):
+            if hands[i]['color'] == currentCard['color']:
+                print("hello")
+                color = hands[i]['color']
+                print(f"\n{color}'")
+                isColor = True
+                break
 
-            currentCard = hands[card_index]
-            del hands[card_index]
+
+
+        if isColor:
+            count = int(currentCard['value'])
+
+            for i in range(0, 1):
+                print(i)
+                if color == hands[i]['color'] and count != 0:
+                    moveCard = hands[i]
+                    count -= 1
+
             nopeUsed = False
 
-        elif action == 'nope':
+        else:
             if not currentCard or nopeUsed:
                 print("Cannot use Nope card.")
                 return
-
             nopeUsed = True
 
-        else:
-            print("Invalid action.")
-            return
 
-        # HIER muss die post Schnittstelle hin
+        moveData = Move('put', moveCard, 'card2_value', 'card3_value', 'reason_value')
 
+        # JSON-Datei schreiben
+        with open('move.json', 'w') as file:
+            json.dump(moveData.__dict__, file)
+
+        with open('move.json', 'r') as file:
+            jsonData = json.load(file)
+
+        #Socket.makeMove(jsonData)
 
     else:
         print("It's not our turn.")
 
-
-def get_player_action():
-    randomInt = random.randint(0, 1)
-    action = ['play', 'nope']
-    return action[randomInt]
+play_nope(state)
 
 
-def get_card_to_play(hand):
+def get_card_to_play(hand, handSize):
     while True:
-        card_index = random.randint(0, len(hand))
+        card_index = random.randint(0, handSize)
         if card_index in range(len(hand)):
             return card_index
 
-
-play_nope()

@@ -1,0 +1,20 @@
+{
+  "hand": [
+    {
+      "type": "number",
+      "color": "red",
+      "value": "2",
+      "select?": "number",
+      "selectValue?": "number",
+      "selectedColor?": "red"
+    },
+    {
+      "type": "number",
+      "color": "yellow",
+      "value": "2",
+      "select?": "number",
+      "selectValue?": "number",
+      "selectedColor?": "red"
+    }
+  ]
+}

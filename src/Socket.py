@@ -1,6 +1,7 @@
 
 import socketio
 import json
+import AIPlayer
 
 sio = socketio.Client()
 
@@ -35,13 +36,18 @@ def start_tournament():
     message = sio.call("tournament:start")
     print(message)
 
-def gameState():
-    state = sio.emit("game:state")
-    return state
+@sio.on('game:state')
+def gameState(state):
+    print("NEW STATE!")
+    AIPlayer.play_nope(state)
+
 
 def makeMove(move):
-    message = sio.call("game:makeMove", move)
-    print(message)
+    message = sio.emit("game:makeMove", move)
+    if message.status_code == 200:
+        print("Erfolgreich an dem Server gesendet")
+    else:
+        return None
 
 def main(accessToken):
     # Hier stellt man eine Verbindung mit dem Server auf
