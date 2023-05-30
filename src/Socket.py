@@ -2,8 +2,10 @@
 import socketio
 import json
 import AIPlayer
+import requests
 
 sio = socketio.Client()
+playerID = 0
 
 @sio.event
 def connect():
@@ -28,13 +30,43 @@ def tournamentJoin(tournamentID):
     sio.emit("tournament:join", json.dumps({"tournamentId": tournamentID}))
 
 # Hier kann man ein Tunier verlassen
-def leave_tournament():
+def tournamentLeave():
     sio.emit("tournament:leave")
 
 # Hier kann man ein Tunier starten
-def start_tournament():
+def tournamentStart():
     message = sio.call("tournament:start")
     print(message)
+
+@sio.on("tournament:info")
+def tournamentInfo(message, _):
+    print("Information for the tournament: ")
+    print(message['message'])
+    print(message['status'])
+
+@sio.on("tournament:playerInfo")
+def playerInTournament(message, _):
+    print("Player in Tournament: ")
+    print(message['message'])
+
+@sio.on("list:tournaments")
+def tournamentsList(message, _):
+    list = []
+    ID = []
+
+    for tournament in message:
+
+        ID.append(tournament['id'])
+        ID.append(tournament['status'])
+
+        for player in tournament["players"]:
+            ID.append(player["username"])
+
+        list.append(ID)
+        ID = []
+
+    for i in list:
+        print(i)
 
 @sio.on('game:state')
 def gameState(state):
@@ -49,10 +81,28 @@ def makeMove(move):
     else:
         return None
 
-def main(accessToken):
-    # Hier stellt man eine Verbindung mit dem Server auf
-    sio.connect("https://nope-server.azurewebsites.net", auth={'token': accessToken})
 
-    sio.wait()
+
+@sio.on("match:info")
+def match_info(message, _):
+    print("MATCH INFO: ")
+    print(message['message'])
+
+    opp = message['match']['opponents']
+
+
+
+
+
+def login(accessToken):
+
+    player = (accessToken.json()['user'])
+    global playerID
+    playerID = (player['id'])
+
+    print(accessToken.json())
+    # Hier stellt man eine Verbindung mit dem Server auf
+    sio.connect("https://nope-server.azurewebsites.net", namespaces="/", auth={'token': accessToken.json()["accessToken"]})
+
 
 

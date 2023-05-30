@@ -10,9 +10,10 @@ def login(username, password):
     #Der Post request zum Login
     access = requests.post('https://nope-server.azurewebsites.net/api/auth/login', json=data)
 
+
     #Abfrage ob man sich einloggen konnte
     if access.status_code == 200:
-        return access.json()['accessToken']
+        return access
     else:
         return None
 

@@ -89,7 +89,6 @@ def play_nope(state):
     else:
         print("It's not our turn.")
 
-play_nope(state)
 
 
 def get_card_to_play(hand, handSize):

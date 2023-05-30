@@ -43,6 +43,7 @@ class MainWindow(tk.Tk):
             # Aus der Klasse Request wird die Login methode verwendet um den Access key zu erhalten
             access = Requests.login(username, password)
             print("Successfully logged in")
+            Socket.login(access)
             self.showFrame(GameMenu)
         else:
             messagebox.showerror(title="Error", message="Failed to login.")
