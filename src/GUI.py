@@ -10,7 +10,7 @@ import Requests
 import Socket
 
 access = 0
-
+data = 0
 
 class MainWindow(tk.Tk):
 
@@ -37,7 +37,7 @@ class MainWindow(tk.Tk):
 
     # Diese Methode schaut nach ob ein bereits registrierter User sich anmeldet
     def login(self, usernameEntry, passwordEntry):
-        username = "Marsle"
+        username = "Marsle2"
         password = "Software"
         if usernameEntry.get() == username and passwordEntry.get() == password:
             # Aus der Klasse Request wird die Login methode verwendet um den Access key zu erhalten
@@ -56,14 +56,19 @@ class MainWindow(tk.Tk):
 
     # In dieser Methode kann man ein Tournier betretentitlescreen
     def joinTournament(self):
+        tournamentID = input("Tournament-ID: ")
+        Socket.tournamentJoin(tournamentID)
         print("Tournament joined")
 
     # In dieser Methode kann man ein Tunrier erstellen
     def createTournament(self):
+        matches = int(input("Insert the number of matches: "))
+        Socket.tournamentCreate(matches)
         print("Create Tournament")
 
     # In dieser Methode kann man ein Turnier verlassen
     def leaveTournament(self):
+        Socket.tournamentLeave()
         print("leaving")
 
     # Diese Methode zeigt den aktuellen Frame
@@ -205,6 +210,12 @@ class Tournament(tk.Frame):
         createTournamentButton.grid(row=2, column=6, padx=200, pady=10)
         leaveTournamentButton.grid(row=3, column=6, padx=200, pady=10)
         menuButton.grid(row=500, column=6, padx=200, pady=10)
+
+class PlayTournament(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+
+
 
 window = MainWindow()
 window.title("Cardgame-Nope")

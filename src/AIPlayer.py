@@ -2,7 +2,6 @@ import random
 import json
 import Socket
 
-
 # JSON-Datei lesen
 with open('move.json', 'r') as file:
     json_data = json.load(file)
@@ -15,6 +14,7 @@ with open('stateTest.json', 'r') as file:
 with open('hand.json', 'r') as file:
     HAND = json.load(file)
 
+
 # Move-Objekt erstellen
 class Move:
     def __init__(self, type, card1, card2, card3, reason):
@@ -25,57 +25,62 @@ class Move:
         self.reason = reason
 
 
-
 def play_nope(state):
-
     players = state['players']
     currentPlayerIDx = state['currentPlayerIdx']
     currentPlayer = players[currentPlayerIDx]
-    hands = state['hand']
+    hands = HAND['hand']
     handSize = state['handSize']
     currentCard = state['topCard']
     nopeUsed = False
 
-    moveCard = 0
+    type = []
+    firstCard = [0]
+    secondCard = [0]
+    thirdCard = [0]
+
     # Überprüfen, ob currentPlayerIdx unserer ID entspricht
     if currentPlayer['username'] == "Marsle":
         print(f"\n{currentPlayer['username']}'s turn:")
 
-        size = int(handSize)
         if currentCard:
             print(f"Current card: {currentCard}")
 
-        isColor = False
-
+        value = 0
+        index = []
+        cardValue = int(currentCard['value'])
         for i in range(handSize):
             if hands[i]['color'] == currentCard['color']:
-                print("hello")
                 color = hands[i]['color']
-                print(f"\n{color}'")
-                isColor = True
-                break
+                print(f"\n{color}")
+                index.append(i)
+                value += 1
 
+        value = 3
+        if value >= cardValue:
+            if value >= 3:
+                thirdCard.remove(0)
+                thirdCard = hands[index[2]]
 
+                value -= 1
 
-        if isColor:
-            count = int(currentCard['value'])
+            if value >= 2:
+                secondCard.remove(0)
+                secondCard.append(hands[index[1]])
+                value -= 1
 
-            for i in range(0, 1):
-                print(i)
-                if color == hands[i]['color'] and count != 0:
-                    moveCard = hands[i]
-                    count -= 1
+            if value >= 1:
+                firstCard.remove(0)
+                firstCard.append(hands[index[0]])
 
-            nopeUsed = False
-
+            type.append("put")
+            moveData = Move(type[0], firstCard[0], secondCard[0], thirdCard, 'reason_value')
         else:
-            if not currentCard or nopeUsed:
-                print("Cannot use Nope card.")
-                return
-            nopeUsed = True
+            type.append("take")
+            moveData = Move(type[0], firstCard[0], secondCard[0], thirdCard[0], 'reason_value')
 
 
-        moveData = Move('put', moveCard, 'card2_value', 'card3_value', 'reason_value')
+
 
         # JSON-Datei schreiben
         with open('move.json', 'w') as file:
@@ -84,16 +89,10 @@ def play_nope(state):
         with open('move.json', 'r') as file:
             jsonData = json.load(file)
 
-        #Socket.makeMove(jsonData)
+        # Socket.makeMove(jsonData)
 
     else:
         print("It's not our turn.")
 
 
-
-def get_card_to_play(hand, handSize):
-    while True:
-        card_index = random.randint(0, handSize)
-        if card_index in range(len(hand)):
-            return card_index
-
+play_nope(state)

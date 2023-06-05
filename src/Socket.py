@@ -53,7 +53,7 @@ def playerInTournament(message, _):
 def tournamentsList(message, _):
     list = []
     ID = []
-
+    print("List of Tournaments: ")
     for tournament in message:
 
         ID.append(tournament['id'])

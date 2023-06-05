@@ -1,6 +1,6 @@
 import requests
-
-#data = {'username': 'Marsle', 'password': 'Software', 'firstname': 'Marcel', 'lastname': 'Bergen'}
+import json
+#data = {'username': 'Marsle2', 'password': 'Software', 'firstname': 'Marcel2', 'lastname': 'Bergen2'}
 
 
 def login(username, password):
