@@ -4,7 +4,7 @@
   "topCard": {
     "type": "number",
     "color": "red",
-    "value": "2",
+    "value": "6",
     "select?": "number",
     "selectValue?": "number",
     "selectedColor?": "red"

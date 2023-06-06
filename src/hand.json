@@ -42,7 +42,7 @@
     },
     {
       "type": "number",
-      "color": "yellow",
+      "color": "red",
       "value": "2",
       "select?": "number",
       "selectValue?": "number",
