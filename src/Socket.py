@@ -1,4 +1,4 @@
-
+import time
 import socketio
 import json
 import AIPlayer
@@ -6,6 +6,12 @@ import requests
 
 sio = socketio.Client()
 playerID = 0
+hand = None
+topCard = None
+last_topCard = None
+last_move = None
+current_player = None
+handSize = None
 
 @sio.event
 def connect():
@@ -27,11 +33,13 @@ def tournamentCreate(matches):
 
 # Hier kann man ein vorhandenes Turnier erstellen mit der TurnierID
 def tournamentJoin(tournamentID):
-    sio.emit("tournament:join", json.dumps({"tournamentId": tournamentID}))
+    message = sio.call("tournament:join", tournamentID)
+    print(message)
 
 # Hier kann man ein Tunier verlassen
 def tournamentLeave():
-    sio.emit("tournament:leave")
+    message = sio.call("tournament:leave")
+    print(message)
 
 # Hier kann man ein Tunier starten
 def tournamentStart():
@@ -69,17 +77,22 @@ def tournamentsList(message, _):
         print(i)
 
 @sio.on('game:state')
-def gameState(state):
-    print("NEW STATE!")
-    AIPlayer.play_nope(state)
+def gameState(state, _):
+    global topCard, hand, last_move, current_player, last_topCard, player_id, handSize
+    topCard = state['topCard']
+    last_topCard = state['lastTopCard']
+    hand = state['hand']
+    last_move = state['lastMove']
+    current_player = state['currentPlayer']
+    handSize = state['handSize']
 
-
-def makeMove(move):
-    message = sio.emit("game:makeMove", move)
-    if message.status_code == 200:
-        print("Erfolgreich an dem Server gesendet")
-    else:
-        return None
+@sio.on("game:makeMove")
+def makeMove(data):
+    global topCard, hand
+    print(data['message'])
+    move = AIPlayer.play_nope(hand, topCard, current_player, last_move, last_topCard, handSize)
+    time.sleep(0.5)
+    return move
 
 
 

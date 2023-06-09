@@ -1,6 +1,6 @@
 import requests
 import json
-#data = {'username': 'Marsle2', 'password': 'Software', 'firstname': 'Marcel2', 'lastname': 'Bergen2'}
+data = {'username': 'Marsle3', 'password': 'Software', 'firstname': 'Marcel3', 'lastname': 'Bergen3'}
 
 
 def login(username, password):
@@ -20,7 +20,7 @@ def login(username, password):
 
 def register(username, password, firstName, lastName):
 
-    data = {'username': username, 'password': password, 'firstname': firstName, 'lastname': lastName}
+    #data = {'username': username, 'password': password, 'firstname': firstName, 'lastname': lastName}
 
     message = requests.post('https://nope-server.azurewebsites.net/api/auth/register', json=data)
 

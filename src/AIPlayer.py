@@ -1,6 +1,5 @@
-import random
 import json
-import Socket
+
 
 # JSON-Datei lesen
 with open('move.json', 'r') as file:
@@ -24,110 +23,45 @@ class Move:
         self.card3 = card3
         self.reason = reason
 
-isTake = False
-takeCard = 0
-takeValue = 0
-takeCardValue = 0
 
-def play_nope(state):
-    global isTake
-    global takeCard
-    global takeValue
-    global takeCardValue
-    players = state['players']
-    currentPlayerIDx = state['currentPlayerIdx']
-    currentPlayer = players[currentPlayerIDx]
-    hands = HAND['hand']
-    handSize = state['handSize']
-    currentCard = state['topCard']
-    nopeUsed = False
+def play_nope(hand, topCard, stateCurrentPlayer, lastMove, lastTopCard, stateHandSize):
+    currentPlayer = stateCurrentPlayer
+    hands = hand
+    handSize = stateHandSize
+    currentCard = topCard
 
-    type = []
-    firstCard = [0]
-    secondCard = [0]
-    thirdCard = [0]
 
     # Überprüfen, ob currentPlayerIdx unserer ID entspricht
-    if currentPlayer['username'] == "Marsle":
-        if not isTake:
-            print(f"\n{currentPlayer['username']}'s turn:")
+    if currentPlayer['username'] == "Marsle" or currentPlayer['username'] == "Marsle2":
+        print(f"\n{currentPlayer['username']}'s turn:")
 
-            if currentCard:
-                print(f"Current card: {currentCard}")
+        moveData = Move(None, None, None, None, 'reason_value')
 
-            value = 0
-            index = []
-            cardValue = int(currentCard['value'])
-            for i in range(handSize):
-                if hands[i]['color'] == currentCard['color']:
-                    color = hands[i]['color']
-                    print(f"\n{color}")
-                    index.append(i)
-                    value += 1
+        if currentCard:
+            print(f"Current card: {currentCard}\n")
 
-            #Wenn man genug Karten hat, dann können die rausgelegt werden
-            if value >= cardValue:
-                if value >= 3:
-                    thirdCard.remove(0)
-                    thirdCard = hands[index[2]]
+        for i in range(handSize):
+            print(f"my card: {hands[i]}\n")
 
-                    value -= 1
 
-                if value >= 2:
-                    secondCard.remove(0)
-                    secondCard.append(hands[index[1]])
-                    value -= 1
 
-                if value >= 1:
-                    firstCard.remove(0)
-                    firstCard.append(hands[index[0]])
+        if currentCard['type'] == 'number':
+            moveData = numCards(currentCard, hands)
 
-                type.append("put")
-                moveData = Move(type[0], firstCard[0], secondCard[0], thirdCard, 'reason_value')
-            #Meine Karten Anzahl ist zu gering
+        if currentCard['type'] == 'see-through':
+            moveData = seeTrough(lastTopCard, hands)
+
+        if currentCard['type'] == 'reboot':
+            moveData = Move('put', hand[0], None, None, 'reason_value')
+
+        if currentCard['type'] == 'joker':
+            moveData = Move('put', hand[0], None, None, 'reason_value')
+
+        if moveData is None:
+            if lastMove['type'] == 'take':
+                moveData = Move('nope', None, None, None, 'reason_value')
             else:
-                type.append("take")
-                isTake = True
-                takeCard = currentCard['color']
-                takeValue = value
-                takeCardValue = cardValue
-                moveData = Move(type[0], firstCard[0], secondCard[0], thirdCard[0], 'reason_value')
-        # Nope Fall
-        else:
-            index = []
-            #Hier wird geschaut ob die neu gezogene Karte die richtige Farbe hat
-            if hands[handSize-1]['color'] == takeCard:
-                takeValue +=1
-                for i in range(handSize):
-                    if hands[i]['color'] == takeCard:
-                        index.append(i)
-                # Wenn man genug Karten hat, dann können die rausgelegt werden
-                if takeValue == takeCardValue:
-                    if takeValue >= 3:
-                        thirdCard.remove(0)
-                        thirdCard = hands[index[2]]
-
-                        takeValue -= 1
-
-                    if takeValue >= 2:
-                        secondCard.remove(0)
-                        secondCard.append(hands[index[1]])
-                        takeValue -= 1
-
-                    if takeValue >= 1:
-                        firstCard.remove(0)
-                        firstCard.append(hands[index[0]])
-
-                    type.append("put")
-                    moveData = Move(type[0], firstCard[0], secondCard[0], thirdCard, 'reason_value')
-                #Sonst wird Nope gespielt
-                else:
-                    print("Hier Nope")
-                    moveData = Move("nope", 0, 0, 0, 'Use nope')
-            #Sonst wird Nope gespielt
-            else:
-                print("Oder Hier Nope")
-                moveData = Move("nope", 0, 0, 0, 'Use nope')
+                moveData = Move('take', None, None, None, 'reason_value')
 
 
         # JSON-Datei schreiben
@@ -137,7 +71,152 @@ def play_nope(state):
         with open('move.json', 'r') as file:
             jsonData = json.load(file)
 
-        # Socket.makeMove(jsonData)
+        print("I play")
+        print(jsonData)
+        return jsonData
 
     else:
         print("It's not our turn.")
+        return None
+
+
+def numCards(topCard, hand):
+    firstCard = None
+    secondCard = None
+    thirdCard = None
+    value = 0
+    cardValue = int(topCard['value'])
+
+    searchCards = topCard['color'].split('-')
+    fitCard = []
+
+    for searchCard in searchCards:
+        for cards in hand:
+            if any(color in cards['color'].split('-') for color in searchCard.split('-')) and cards['type'] == 'number':
+                fitCard.append(cards)
+                value += 1
+        if len(fitCard) >= cardValue:
+            break
+        else:
+            countJoker = jokerAvailable(hand)
+            countReboot = rebootAvailable(hand)
+            countSeeTrough = seeTroughAvailable(hand)
+            if countJoker > 0 and (countJoker + value) >= cardValue:
+                moveData = playJoker(fitCard, countJoker, cardValue)
+                return moveData
+            elif countReboot > 0:
+                moveData = playReboot()
+                return moveData
+            elif countSeeTrough > 0:
+                cardsSeeTrough = canPlaySeeTrough(hand, fitCard, searchCards)
+                if len(cardsSeeTrough) > 0:
+                    moveData = playSeeTrough(cardsSeeTrough)
+                    return moveData
+            fitCard.clear()
+            value = 0
+
+    # Wenn man genug Karten hat, dann können die rausgelegt werden
+    if value >= cardValue:
+        if cardValue >= 3:
+            thirdCard = fitCard[2]
+
+            cardValue -= 1
+
+        if cardValue >= 2:
+            secondCard = fitCard[1]
+            cardValue -= 1
+
+        if cardValue >= 1:
+            firstCard = fitCard[0]
+
+
+        moveData = Move("put", firstCard, secondCard, thirdCard, 'reason_value')
+        return moveData
+        # Meine Karten Anzahl ist zu gering
+    return None
+
+def seeTrough(lastCard, hand):
+    moveData = None
+    if lastCard['type'] == 'reboot':
+        moveData = reboot(hand)
+    elif lastCard['type'] == 'number':
+        moveData = numCards(lastCard, hand)
+    elif lastCard['type'] == 'joker':
+        moveData = Move('put', hand[0], None, None, 'reason_value')
+    return moveData
+
+def reboot(hand):
+    moveData = Move('put', hand[0], None, None, 'reason_value')
+    return moveData
+
+def jokerAvailable(hand):
+    count = 0
+    for cards in hand:
+        if cards['type'] == 'joker':
+            count+=1
+    return count
+
+def rebootAvailable(hand):
+    count = 0
+    for cards in hand:
+        if cards['type'] == 'reboot':
+            count += 1
+    return count
+
+def seeTroughAvailable(hand):
+    count = 0
+    for cards in hand:
+        if cards['type'] == 'see-through':
+            count += 1
+    return count
+
+def playJoker(fitCard, countJoker, cardValue):
+    joker = {
+        "type": "joker",
+        "color": "multi",
+        "value": 1,
+        "select?": None,
+        "selectValue?": None,
+        "selectedColor?": None
+    }
+    if cardValue == 3:
+        if countJoker == 3:
+            moveData = Move('put', joker, joker, joker, 'reason_value')
+        elif countJoker == 2:
+            moveData = Move('put', fitCard[0], joker, joker, 'reason_value')
+        else:
+            moveData = Move('put', fitCard[0], fitCard[1], joker, 'reason_value')
+    elif cardValue == 2:
+        if countJoker == 2:
+            moveData = Move('put', joker, joker, None, 'reason_value')
+        else:
+            moveData = Move('put', fitCard[0], joker, None, 'reason_value')
+    else:
+        moveData = Move('put', joker, None, None, 'reason_value')
+
+    return moveData
+
+def playReboot():
+    reboot = {
+        "type": "reboot",
+        "color": "multi",
+        "value": None,
+        "select?": None,
+        "selectValue?": None,
+        "selectedColor?": None
+    }
+    moveData = Move('put', reboot, None, None, 'reason_value')
+    return moveData
+
+def canPlaySeeTrough(hand, fitCard, searchedCards):
+    allSeeTroughCards = []
+    for searchedCard in searchedCards:
+        for card in hand:
+            if card['type'] == 'see-through' and any(color in card['color'] for color in searchedCard.split('-')):
+                allSeeTroughCards.append(card)
+    return allSeeTroughCards
+
+def playSeeTrough(allSeeTrough):
+    moveData = Move('put', allSeeTrough[0], None, None, 'reason_value')
+
+    return moveData

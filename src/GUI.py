@@ -37,11 +37,15 @@ class MainWindow(tk.Tk):
 
     # Diese Methode schaut nach ob ein bereits registrierter User sich anmeldet
     def login(self, usernameEntry, passwordEntry):
-        username = "Marsle2"
+        username = "Marsle"
+        username2 = "Marsle2"
         password = "Software"
-        if usernameEntry.get() == username and passwordEntry.get() == password:
+        if usernameEntry.get() == username or usernameEntry.get() == username2 and passwordEntry.get() == password:
             # Aus der Klasse Request wird die Login methode verwendet um den Access key zu erhalten
-            access = Requests.login(username, password)
+            if usernameEntry.get() == "Marsle":
+                access = Requests.login(username, password)
+            else:
+                access = Requests.login(username2, password)
             print("Successfully logged in")
             Socket.login(access)
             self.showFrame(GameMenu)
@@ -70,6 +74,10 @@ class MainWindow(tk.Tk):
     def leaveTournament(self):
         Socket.tournamentLeave()
         print("leaving")
+
+    def startTournament(self):
+        Socket.tournamentStart()
+        print("Start Game")
 
     # Diese Methode zeigt den aktuellen Frame
     def showFrame(self, cont):
@@ -146,7 +154,7 @@ class GameMenu(tk.Frame):
         gameLabel = tkinter.Label(self, text="Welcome to the Game", bg='#878787', fg='#FFFFFF', font=("Arial", 30))
 
         gameStartButton = tkinter.Button(self, text="Play", bg='#666666', fg='#FFFFFF', font=("Arial", 30),
-                                         command=lambda: controller.showFrame(PlayGame))
+                                         command=lambda: controller.startTournament())
 
         gameHistoryButton = tkinter.Button(self, text="History", bg='#666666', fg='#FFFFFF', font=("Arial", 30),
                                          command=lambda: controller.showFrame(History))
@@ -216,8 +224,8 @@ class PlayTournament(tk.Frame):
         tk.Frame.__init__(self, parent)
 
 
-
-window = MainWindow()
-window.title("Cardgame-Nope")
-window.geometry("680x520")
-window.mainloop()
+if __name__ == "__main__":
+    window = MainWindow()
+    window.title("Cardgame-Nope")
+    window.geometry("680x520")
+    window.mainloop()

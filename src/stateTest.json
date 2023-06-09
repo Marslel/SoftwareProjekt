@@ -3,7 +3,7 @@
   "gameId": "1",
   "topCard": {
     "type": "number",
-    "color": "red",
+    "color": "green-red",
     "value": "6",
     "select?": "number",
     "selectValue?": "number",
