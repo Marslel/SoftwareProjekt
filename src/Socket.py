@@ -8,9 +8,9 @@ sio = socketio.Client()
 playerID = 0
 hand = None
 topCard = None
-last_topCard = None
-last_move = None
-current_player = None
+lastCard = None
+lastMove = None
+currentPlayer = None
 handSize = None
 
 @sio.event
@@ -78,19 +78,19 @@ def tournamentsList(message, _):
 
 @sio.on('game:state')
 def gameState(state, _):
-    global topCard, hand, last_move, current_player, last_topCard, player_id, handSize
+    global topCard, hand, lastMove, currentPlayer, lastCard, player_id, handSize
     topCard = state['topCard']
-    last_topCard = state['lastTopCard']
+    lastCard = state['lastTopCard']
     hand = state['hand']
-    last_move = state['lastMove']
-    current_player = state['currentPlayer']
+    lastMove = state['lastMove']
+    currentPlayer = state['currentPlayer']
     handSize = state['handSize']
 
 @sio.on("game:makeMove")
 def makeMove(data):
     global topCard, hand
     print(data['message'])
-    move = AIPlayer.play_nope(hand, topCard, current_player, last_move, last_topCard, handSize)
+    move = AIPlayer.play_nope(hand, topCard, currentPlayer, lastMove, lastCard, handSize)
     time.sleep(0.5)
     return move
 

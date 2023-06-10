@@ -58,10 +58,11 @@ def play_nope(hand, topCard, stateCurrentPlayer, lastMove, lastTopCard, stateHan
             moveData = Move('put', hand[0], None, None, 'reason_value')
 
         if moveData is None:
-            if lastMove['type'] == 'take':
-                moveData = Move('nope', None, None, None, 'reason_value')
-            else:
-                moveData = Move('take', None, None, None, 'reason_value')
+            if lastMove is not None:
+                if lastMove['type'] == 'take':
+                    moveData = Move('nope', None, None, None, 'reason_value')
+                else:
+                    moveData = Move('take', None, None, None, 'reason_value')
 
 
         # JSON-Datei schreiben
@@ -143,7 +144,17 @@ def seeTrough(lastCard, hand):
         moveData = numCards(lastCard, hand)
     elif lastCard['type'] == 'joker':
         moveData = Move('put', hand[0], None, None, 'reason_value')
+    elif lastCard['type'] == 'see-through':
+        moveData = seeTroughUnderSeeTrough(lastCard, hand)
     return moveData
+
+def seeTroughUnderSeeTrough(lastCard, hand):
+    for cards in hand:
+        if lastCard['color'] in cards['color'].split("-"):
+            moveData = Move('put', cards, None, None, 'reason_value')
+            break
+    return moveData
+
 
 def reboot(hand):
     moveData = Move('put', hand[0], None, None, 'reason_value')

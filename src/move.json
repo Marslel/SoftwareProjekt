@@ -1,1 +1,1 @@
-{"type": "put", "card1": {"type": "number", "color": "yellow", "value": 1}, "card2": {"type": "number", "color": "red-yellow", "value": 2}, "card3": {"type": "number", "color": "yellow", "value": 2}, "reason": "reason_value"}
+{"type": "put", "card1": {"type": "number", "color": "blue", "value": 3}, "card2": null, "card3": null, "reason": "reason_value"}
