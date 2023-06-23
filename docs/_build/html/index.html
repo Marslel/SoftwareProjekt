@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Softwareprojekt’s documentation! &mdash; Softwareprojekt 13.06.2023 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Softwareprojekt
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Welcome to Softwareprojekt’s documentation!</a><ul>
+<li><a class="reference internal" href="#src.AIPlayer.Move"><code class="docutils literal notranslate"><span class="pre">Move</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.canPlaySeeTrough"><code class="docutils literal notranslate"><span class="pre">canPlaySeeTrough()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.jokerAvailable"><code class="docutils literal notranslate"><span class="pre">jokerAvailable()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.numCards"><code class="docutils literal notranslate"><span class="pre">numCards()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.playJoker"><code class="docutils literal notranslate"><span class="pre">playJoker()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.playReboot"><code class="docutils literal notranslate"><span class="pre">playReboot()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.playSeeTrough"><code class="docutils literal notranslate"><span class="pre">playSeeTrough()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.play_nope"><code class="docutils literal notranslate"><span class="pre">play_nope()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.reboot"><code class="docutils literal notranslate"><span class="pre">reboot()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.rebootAvailable"><code class="docutils literal notranslate"><span class="pre">rebootAvailable()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.seeTrough"><code class="docutils literal notranslate"><span class="pre">seeTrough()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.seeTroughAvailable"><code class="docutils literal notranslate"><span class="pre">seeTroughAvailable()</span></code></a></li>
+<li><a class="reference internal" href="#src.AIPlayer.seeTroughUnderSeeTrough"><code class="docutils literal notranslate"><span class="pre">seeTroughUnderSeeTrough()</span></code></a></li>
+<li><a class="reference internal" href="#src.Requests.login"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li><a class="reference internal" href="#src.Requests.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.GameMenu"><code class="docutils literal notranslate"><span class="pre">GameMenu</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.History"><code class="docutils literal notranslate"><span class="pre">History</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.Login"><code class="docutils literal notranslate"><span class="pre">Login</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.MainWindow"><code class="docutils literal notranslate"><span class="pre">MainWindow</span></code></a><ul>
+<li><a class="reference internal" href="#src.GUI.MainWindow.createTournament"><code class="docutils literal notranslate"><span class="pre">MainWindow.createTournament()</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.MainWindow.joinTournament"><code class="docutils literal notranslate"><span class="pre">MainWindow.joinTournament()</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.MainWindow.leaveTournament"><code class="docutils literal notranslate"><span class="pre">MainWindow.leaveTournament()</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.MainWindow.login"><code class="docutils literal notranslate"><span class="pre">MainWindow.login()</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.MainWindow.register"><code class="docutils literal notranslate"><span class="pre">MainWindow.register()</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.MainWindow.showFrame"><code class="docutils literal notranslate"><span class="pre">MainWindow.showFrame()</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.MainWindow.startTournament"><code class="docutils literal notranslate"><span class="pre">MainWindow.startTournament()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#src.GUI.PlayGame"><code class="docutils literal notranslate"><span class="pre">PlayGame</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.PlayTournament"><code class="docutils literal notranslate"><span class="pre">PlayTournament</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.Register"><code class="docutils literal notranslate"><span class="pre">Register</span></code></a></li>
+<li><a class="reference internal" href="#src.GUI.Tournament"><code class="docutils literal notranslate"><span class="pre">Tournament</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.connect"><code class="docutils literal notranslate"><span class="pre">connect()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.connectError"><code class="docutils literal notranslate"><span class="pre">connectError()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.disconnect"><code class="docutils literal notranslate"><span class="pre">disconnect()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.gameState"><code class="docutils literal notranslate"><span class="pre">gameState()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.login"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.makeMove"><code class="docutils literal notranslate"><span class="pre">makeMove()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.match_info"><code class="docutils literal notranslate"><span class="pre">match_info()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.playerInTournament"><code class="docutils literal notranslate"><span class="pre">playerInTournament()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.tournamentCreate"><code class="docutils literal notranslate"><span class="pre">tournamentCreate()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.tournamentInfo"><code class="docutils literal notranslate"><span class="pre">tournamentInfo()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.tournamentJoin"><code class="docutils literal notranslate"><span class="pre">tournamentJoin()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.tournamentLeave"><code class="docutils literal notranslate"><span class="pre">tournamentLeave()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.tournamentStart"><code class="docutils literal notranslate"><span class="pre">tournamentStart()</span></code></a></li>
+<li><a class="reference internal" href="#src.Socket.tournamentsList"><code class="docutils literal notranslate"><span class="pre">tournamentsList()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Softwareprojekt</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to Softwareprojekt’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-src.AIPlayer">
+<span id="welcome-to-softwareprojekt-s-documentation"></span><h1>Welcome to Softwareprojekt’s documentation!<a class="headerlink" href="#module-src.AIPlayer" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.AIPlayer.Move">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">Move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">card1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">card2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">card3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reason</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.Move" title="Permalink to this definition"></a></dt>
+<dd><p>Construct the Move-Data json</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.canPlaySeeTrough">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">canPlaySeeTrough</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">searchedCards</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.canPlaySeeTrough" title="Permalink to this definition"></a></dt>
+<dd><p>this Method analasize if a seeTroughcard can be played</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hand</strong> – our handcards</p></li>
+<li><p><strong>searchedCards</strong> – the card where it can play seeTrough</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>all the seetrough cards that can be played</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.jokerAvailable">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">jokerAvailable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.jokerAvailable" title="Permalink to this definition"></a></dt>
+<dd><p>This method search in our handcards for jokercards</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hand</strong> – our handcards</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the number of the jokercards</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.numCards">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">numCards</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">topCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.numCards" title="Permalink to this definition"></a></dt>
+<dd><p>In this Method is the logic for the number cards</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>topCard</strong> – is the reaction card</p></li>
+<li><p><strong>hand</strong> – are our handcards</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the move-data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.playJoker">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">playJoker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fitCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">countJoker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cardValue</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.playJoker" title="Permalink to this definition"></a></dt>
+<dd><p>This method plays the Jokercards</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fitCard</strong> – the card that fits</p></li>
+<li><p><strong>countJoker</strong> – number of the jokercards</p></li>
+<li><p><strong>cardValue</strong> – value of the discarded cards</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the move-data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.playReboot">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">playReboot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.playReboot" title="Permalink to this definition"></a></dt>
+<dd><p>This Method plays the reboot card</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the move-data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.playSeeTrough">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">playSeeTrough</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allSeeTrough</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.playSeeTrough" title="Permalink to this definition"></a></dt>
+<dd><p>This Method plays the seeTroughcard</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>allSeeTrough</strong> – all seeThroughcards</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>plays the seeTroughcard</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.play_nope">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">play_nope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">topCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stateCurrentPlayer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lastMove</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lastTopCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stateHandSize</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.play_nope" title="Permalink to this definition"></a></dt>
+<dd><p>This Method handels the different situations of the game state</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hand</strong> – This is the Players handcards</p></li>
+<li><p><strong>topCard</strong> – This is the Card that the KI must reply to</p></li>
+<li><p><strong>stateCurrentPlayer</strong> – This shows which players turn is</p></li>
+<li><p><strong>lastMove</strong> – This shows the last Turn from the last player</p></li>
+<li><p><strong>lastTopCard</strong> – This is the last card that was played</p></li>
+<li><p><strong>stateHandSize</strong> – Here is the size of the handcards stored</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>is the move-data json data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.reboot">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">reboot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.reboot" title="Permalink to this definition"></a></dt>
+<dd><p>handels the reboot card</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hand</strong> – our handcards</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the move-data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.rebootAvailable">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">rebootAvailable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.rebootAvailable" title="Permalink to this definition"></a></dt>
+<dd><p>this method search in our handscards for rebootcards</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hand</strong> – our handcards</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the number of the rebootcards</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.seeTrough">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">seeTrough</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lastCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.seeTrough" title="Permalink to this definition"></a></dt>
+<dd><p>in this Method is the logic behind the seetrough card</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lastCard</strong> – is the reaction card</p></li>
+<li><p><strong>hand</strong> – are our handcards</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the move-data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.seeTroughAvailable">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">seeTroughAvailable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.seeTroughAvailable" title="Permalink to this definition"></a></dt>
+<dd><p>this method search in our handscards for seetroughcards</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>hand</strong> – our handcards</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the number of the seetroughcards</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.AIPlayer.seeTroughUnderSeeTrough">
+<span class="sig-prename descclassname"><span class="pre">src.AIPlayer.</span></span><span class="sig-name descname"><span class="pre">seeTroughUnderSeeTrough</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lastCard</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hand</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.AIPlayer.seeTroughUnderSeeTrough" title="Permalink to this definition"></a></dt>
+<dd><p>Handels the situation where a seeTroughcard is under a seeTroughcard</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lastCard</strong> – is the reaction card</p></li>
+<li><p><strong>hand</strong> – are our handcards</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the ready move-data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-src.Requests"></span><dl class="py function">
+<dt class="sig sig-object py" id="src.Requests.login">
+<span class="sig-prename descclassname"><span class="pre">src.Requests.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Requests.login" title="Permalink to this definition"></a></dt>
+<dd><p>the login Post to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> – the given username for the login</p></li>
+<li><p><strong>password</strong> – the given password for the login</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>accessToken for the server Authenticator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Requests.register">
+<span class="sig-prename descclassname"><span class="pre">src.Requests.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firstName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lastName</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Requests.register" title="Permalink to this definition"></a></dt>
+<dd><p>The register Post to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> – the given username for the login</p></li>
+<li><p><strong>password</strong> – the given password for the login</p></li>
+<li><p><strong>firstName</strong> – the given firstName for the login</p></li>
+<li><p><strong>lastName</strong> – the given lastName for the login</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the success message from the server</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-src.GUI"></span><dl class="py class">
+<dt class="sig sig-object py" id="src.GUI.GameMenu">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.GUI.</span></span><span class="sig-name descname"><span class="pre">GameMenu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.GameMenu" title="Permalink to this definition"></a></dt>
+<dd><p>This class construct the GameMenu frame</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.GUI.History">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.GUI.</span></span><span class="sig-name descname"><span class="pre">History</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.History" title="Permalink to this definition"></a></dt>
+<dd><p>This class construct the History frame</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.GUI.Login">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.GUI.</span></span><span class="sig-name descname"><span class="pre">Login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.Login" title="Permalink to this definition"></a></dt>
+<dd><p>This class construct the Login frame</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.GUI.MainWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.GUI.</span></span><span class="sig-name descname"><span class="pre">MainWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.MainWindow" title="Permalink to this definition"></a></dt>
+<dd><p>This class controlls the Frames that are active, aswell as all the logic for the different Buttons</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.GUI.MainWindow.createTournament">
+<span class="sig-name descname"><span class="pre">createTournament</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.MainWindow.createTournament" title="Permalink to this definition"></a></dt>
+<dd><p>This Method post a creation of a tournament to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.GUI.MainWindow.joinTournament">
+<span class="sig-name descname"><span class="pre">joinTournament</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.MainWindow.joinTournament" title="Permalink to this definition"></a></dt>
+<dd><p>This method post a join request to a tournament to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.GUI.MainWindow.leaveTournament">
+<span class="sig-name descname"><span class="pre">leaveTournament</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.MainWindow.leaveTournament" title="Permalink to this definition"></a></dt>
+<dd><p>This Method post a leave request to the Server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.GUI.MainWindow.login">
+<span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">usernameEntry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passwordEntry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.MainWindow.login" title="Permalink to this definition"></a></dt>
+<dd><p>this Method creates a login post to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>usernameEntry</strong> – This is the username that the user enters</p></li>
+<li><p><strong>passwordEntry</strong> – This is the password that the user enters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.GUI.MainWindow.register">
+<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">firstName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lastName</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.MainWindow.register" title="Permalink to this definition"></a></dt>
+<dd><p>This method post a register request to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> – is the name that the user enters</p></li>
+<li><p><strong>password</strong> – is the password that the user enters</p></li>
+<li><p><strong>firstName</strong> – is the firstname that the user enters</p></li>
+<li><p><strong>lastName</strong> – is the lastname that the user enters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.GUI.MainWindow.showFrame">
+<span class="sig-name descname"><span class="pre">showFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cont</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.MainWindow.showFrame" title="Permalink to this definition"></a></dt>
+<dd><p>This Method shows the current frame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cont</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.GUI.MainWindow.startTournament">
+<span class="sig-name descname"><span class="pre">startTournament</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.MainWindow.startTournament" title="Permalink to this definition"></a></dt>
+<dd><p>This Method post a start request to the Server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.GUI.PlayGame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.GUI.</span></span><span class="sig-name descname"><span class="pre">PlayGame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.PlayGame" title="Permalink to this definition"></a></dt>
+<dd><p>This class construct the PlayGame frame</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.GUI.PlayTournament">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.GUI.</span></span><span class="sig-name descname"><span class="pre">PlayTournament</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.PlayTournament" title="Permalink to this definition"></a></dt>
+<dd><p>This class construct the playTournament frame</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.GUI.Register">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.GUI.</span></span><span class="sig-name descname"><span class="pre">Register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.Register" title="Permalink to this definition"></a></dt>
+<dd><p>This class construct the Register frame</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.GUI.Tournament">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.GUI.</span></span><span class="sig-name descname"><span class="pre">Tournament</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.GUI.Tournament" title="Permalink to this definition"></a></dt>
+<dd><p>This class construct the Tournament frame</p>
+</dd></dl>
+
+<span class="target" id="module-src.Socket"></span><dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.connect">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.connect" title="Permalink to this definition"></a></dt>
+<dd><p>this event is triggerd, when the client connects to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.connectError">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">connectError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.connectError" title="Permalink to this definition"></a></dt>
+<dd><p>this event is triggerd, when a connection error has accured</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.disconnect">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.disconnect" title="Permalink to this definition"></a></dt>
+<dd><p>this event is triggerd, when the client disconnect from the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.gameState">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">gameState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.gameState" title="Permalink to this definition"></a></dt>
+<dd><p>This Mehtod is triggered when the server post a new gameState in a progressing Match</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> – the current State of the game</p></li>
+<li><p><strong>_</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>updatet statecards</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.login">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">accessToken</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.login" title="Permalink to this definition"></a></dt>
+<dd><p>connect to the server with the own accessToken</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>accessToken</strong> – a Authentificator for the server</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.makeMove">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">makeMove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.makeMove" title="Permalink to this definition"></a></dt>
+<dd><p>This method post a move to the server, when the KI calculatet a move</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.match_info">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">match_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.match_info" title="Permalink to this definition"></a></dt>
+<dd><p>Current game Info from the serrver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – the message</p></li>
+<li><p><strong>_</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.playerInTournament">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">playerInTournament</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.playerInTournament" title="Permalink to this definition"></a></dt>
+<dd><p>In this post from the server, the client receives a status of all players in current tournaments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – the message</p></li>
+<li><p><strong>_</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.tournamentCreate">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">tournamentCreate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.tournamentCreate" title="Permalink to this definition"></a></dt>
+<dd><p>this Method post a tournamentcreation to the server with the number of matches</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>matches</strong> – must be a positive odd number</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.tournamentInfo">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">tournamentInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.tournamentInfo" title="Permalink to this definition"></a></dt>
+<dd><p>When the server post new Information about the tournament, then the client reveice it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – the status of new created tournaments</p></li>
+<li><p><strong>_</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.tournamentJoin">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">tournamentJoin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tournamentID</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.tournamentJoin" title="Permalink to this definition"></a></dt>
+<dd><p>this Method post a join on a tournament to the server with the matching tournamentID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tournamentID</strong> – must be a positive odd number</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.tournamentLeave">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">tournamentLeave</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.tournamentLeave" title="Permalink to this definition"></a></dt>
+<dd><p>This method post a leave to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.tournamentStart">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">tournamentStart</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.tournamentStart" title="Permalink to this definition"></a></dt>
+<dd><p>This method post a starting message to the server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.Socket.tournamentsList">
+<span class="sig-prename descclassname"><span class="pre">src.Socket.</span></span><span class="sig-name descname"><span class="pre">tournamentsList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.Socket.tournamentsList" title="Permalink to this definition"></a></dt>
+<dd><p>When the server post a tournamentList, than will the client see it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> – a message</p></li>
+<li><p><strong>_</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Marcel Bergen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

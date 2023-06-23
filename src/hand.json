@@ -2,6 +2,14 @@
   "hand": [
     {
       "type": "number",
+      "color": "red-blue",
+      "value": "2",
+      "select?": "number",
+      "selectValue?": "number",
+      "selectedColor?": "red-green"
+    },
+    {
+      "type": "number",
       "color": "red",
       "value": "2",
       "select?": "number",
@@ -10,7 +18,31 @@
     },
     {
       "type": "number",
-      "color": "yellow",
+      "color": "red",
+      "value": "2",
+      "select?": "number",
+      "selectValue?": "number",
+      "selectedColor?": "red"
+    },
+    {
+      "type": "number",
+      "color": "green-yellow",
+      "value": "2",
+      "select?": "number",
+      "selectValue?": "number",
+      "selectedColor?": "red"
+    },
+    {
+      "type": "number",
+      "color": "green",
+      "value": "2",
+      "select?": "number",
+      "selectValue?": "number",
+      "selectedColor?": "red"
+    },
+    {
+      "type": "number",
+      "color": "green",
       "value": "2",
       "select?": "number",
       "selectValue?": "number",

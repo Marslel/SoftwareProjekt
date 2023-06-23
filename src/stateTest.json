@@ -3,8 +3,8 @@
   "gameId": "1",
   "topCard": {
     "type": "number",
-    "color": "red",
-    "value": "2",
+    "color": "green-red",
+    "value": "6",
     "select?": "number",
     "selectValue?": "number",
     "selectedColor?": "red"
@@ -22,7 +22,7 @@
     {
       "id": "player1 id",
       "username": "Marsle",
-      "handSize": 4
+      "handSize": 6
     },
     {
       "id": "player2 id",
@@ -36,14 +36,15 @@
     "value": "2",
     "select?": "number",
     "selectValue?": "number",
-    "selectedColor?": "red"}, {
+    "selectedColor?": "red"},
+    {
       "type": "number",
     "color": "yellow",
     "value": "2",
     "select?": "number",
     "selectValue?": "number",
     "selectedColor?": "red"}],
-  "handSize": 4,
+  "handSize": 6,
   "currentPlayer": {
     "id": "player1 id",
     "username": "Marsle"
