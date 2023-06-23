@@ -6,16 +6,22 @@ In dieser Klasse wird die GUI erstellt, um das Kartenspiel Nope zu spielen
 import tkinter
 import tkinter as tk
 from tkinter import messagebox
-import Requests
+from Requests import *
 import Socket
 
 access = 0
 data = 0
 
 class MainWindow(tk.Tk):
-
+    """
+    This class controlls the Frames that are active, aswell as all the logic for the different Buttons
+    """
     def __init__(self, *args, **kwargs):
+        """this Method controlls the frames and adds new classes
 
+        :param args:
+        :param kwargs:
+        """
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
 
@@ -37,15 +43,21 @@ class MainWindow(tk.Tk):
 
     # Diese Methode schaut nach ob ein bereits registrierter User sich anmeldet
     def login(self, usernameEntry, passwordEntry):
+        """this Method creates a login post to the server
+
+        :param usernameEntry: This is the username that the user enters
+        :param passwordEntry: This is the password that the user enters
+        :return:
+        """
         username = "Marsle"
         username2 = "Marsle2"
         password = "Software"
         if usernameEntry.get() == username or usernameEntry.get() == username2 and passwordEntry.get() == password:
             # Aus der Klasse Request wird die Login methode verwendet um den Access key zu erhalten
             if usernameEntry.get() == "Marsle":
-                access = Requests.login(username, password)
+                access = login(username, password)
             else:
-                access = Requests.login(username2, password)
+                access = login(username2, password)
             print("Successfully logged in")
             Socket.login(access)
             self.showFrame(GameMenu)
@@ -54,39 +66,71 @@ class MainWindow(tk.Tk):
 
     # In dieser Methode kann sich ein neuer Benutzer sich registrieren
     def register(self, username, password, firstName, lastName):
-        Requests.register(username, password, firstName, lastName)
+        """This method post a register request to the server
+
+        :param username: is the name that the user enters
+        :param password: is the password that the user enters
+        :param firstName: is the firstname that the user enters
+        :param lastName: is the lastname that the user enters
+        :return:
+        """
+        register(username, password, firstName, lastName)
         messagebox.showinfo(title="Success", message="New player created")
         self.showFrame(Login)
 
     # In dieser Methode kann man ein Tournier betretentitlescreen
     def joinTournament(self):
+        """This method post a join request to a tournament to the server
+
+        :return:
+        """
         tournamentID = input("Tournament-ID: ")
         Socket.tournamentJoin(tournamentID)
         print("Tournament joined")
 
     # In dieser Methode kann man ein Tunrier erstellen
     def createTournament(self):
+        """This Method post a creation of a tournament to the server
+
+        :return:
+        """
         matches = int(input("Insert the number of matches: "))
         Socket.tournamentCreate(matches)
         print("Create Tournament")
 
     # In dieser Methode kann man ein Turnier verlassen
     def leaveTournament(self):
+        """This Method post a leave request to the Server
+
+        :return:
+        """
         Socket.tournamentLeave()
         print("leaving")
 
     def startTournament(self):
+        """This Method post a start request to the Server
+
+        :return:
+        """
         Socket.tournamentStart()
         print("Start Game")
 
     # Diese Methode zeigt den aktuellen Frame
     def showFrame(self, cont):
+        """ This Method shows the current frame
+
+        :param cont:
+        :return:
+        """
         frame = self.frames[cont]
         frame.tkraise()
 
 
 # Diese Klasse ist der Haupt Screen und man kann sich hier einloggen
 class Login(tk.Frame):
+    """This class construct the Login frame
+
+    """
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -114,6 +158,9 @@ class Login(tk.Frame):
 
 # Mit dieser Klasse können sich neue Benutzer sich registrieren
 class Register(tk.Frame):
+    """This class construct the Register frame
+
+        """
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -147,6 +194,9 @@ class Register(tk.Frame):
 
 # Diese Klasse spiegelt den Hauptscreen des Spieles wieder
 class GameMenu(tk.Frame):
+    """This class construct the GameMenu frame
+
+        """
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -173,6 +223,9 @@ class GameMenu(tk.Frame):
 
 # In dieser KLasse wird man das eigentliche Spiel spielen
 class PlayGame(tk.Frame):
+    """This class construct the PlayGame frame
+
+        """
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -184,6 +237,9 @@ class PlayGame(tk.Frame):
 
 # In dieser Klasse kann man alle gespielten Spiele sehen
 class History(tk.Frame):
+    """This class construct the History frame
+
+        """
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -195,6 +251,9 @@ class History(tk.Frame):
 
 # in Dieser Klasse kann man ein Turnier erstellen und eintreten
 class Tournament(tk.Frame):
+    """This class construct the Tournament frame
+
+        """
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -220,11 +279,16 @@ class Tournament(tk.Frame):
         menuButton.grid(row=500, column=6, padx=200, pady=10)
 
 class PlayTournament(tk.Frame):
+    """This class construct the playTournament frame
+
+        """
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
 
 if __name__ == "__main__":
+    """This is the start of the programm
+    """
     window = MainWindow()
     window.title("Cardgame-Nope")
     window.geometry("680x520")

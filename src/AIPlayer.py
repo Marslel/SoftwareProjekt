@@ -1,22 +1,17 @@
 import json
 
-
-# JSON-Datei lesen
-with open('move.json', 'r') as file:
-    json_data = json.load(file)
-
-# JSON-Datei lesen
-with open('stateTest.json', 'r') as file:
-    state = json.load(file)
-
-# JSON-Datei lesen
-with open('hand.json', 'r') as file:
-    HAND = json.load(file)
-
-
-# Move-Objekt erstellen
+# Construct Move-Object
 class Move:
+    """ Construct the Move-Data json
+    """
     def __init__(self, type, card1, card2, card3, reason):
+        """ The Constructor for the json
+        :param type: This is the Move-Type(put, nope, take)
+        :param card1: The first Card
+        :param card2: The second Card
+        :param card3: The third Card
+        :param reason: The reason behind the move
+        """
         self.type = type
         self.card1 = card1
         self.card2 = card2
@@ -25,6 +20,16 @@ class Move:
 
 
 def play_nope(hand, topCard, stateCurrentPlayer, lastMove, lastTopCard, stateHandSize):
+    """This Method handels the different situations of the game state
+
+    :param hand: This is the Players handcards
+    :param topCard: This is the Card that the KI must reply to
+    :param stateCurrentPlayer: This shows which players turn is
+    :param lastMove: This shows the last Turn from the last player
+    :param lastTopCard: This is the last card that was played
+    :param stateHandSize: Here is the size of the handcards stored
+    :return: is the move-data json data
+    """
     currentPlayer = stateCurrentPlayer
     hands = hand
     handSize = stateHandSize
@@ -82,6 +87,13 @@ def play_nope(hand, topCard, stateCurrentPlayer, lastMove, lastTopCard, stateHan
 
 
 def numCards(topCard, hand):
+    """
+    In this Method is the logic for the number cards
+
+    :param topCard: is the reaction card
+    :param hand: are our handcards
+    :return: the move-data
+    """
     firstCard = None
     secondCard = None
     thirdCard = None
@@ -137,6 +149,13 @@ def numCards(topCard, hand):
     return None
 
 def seeTrough(lastCard, hand):
+    """
+    in this Method is the logic behind the seetrough card
+
+    :param lastCard: is the reaction card
+    :param hand: are our handcards
+    :return: the move-data
+    """
     moveData = None
     if lastCard['type'] == 'reboot':
         moveData = reboot(hand)
@@ -149,6 +168,13 @@ def seeTrough(lastCard, hand):
     return moveData
 
 def seeTroughUnderSeeTrough(lastCard, hand):
+    """
+    Handels the situation where a seeTroughcard is under a seeTroughcard
+
+    :param lastCard: is the reaction card
+    :param hand: are our handcards
+    :return: the ready move-data
+    """
     for cards in hand:
         if lastCard['color'] in cards['color'].split("-"):
             moveData = Move('put', cards, None, None, 'reason_value')
@@ -157,10 +183,22 @@ def seeTroughUnderSeeTrough(lastCard, hand):
 
 
 def reboot(hand):
+    """
+    handels the reboot card
+
+    :param hand: our handcards
+    :return: the move-data
+    """
     moveData = Move('put', hand[0], None, None, 'reason_value')
     return moveData
 
 def jokerAvailable(hand):
+    """
+    This method search in our handcards for jokercards
+
+    :param hand: our handcards
+    :return: the number of the jokercards
+    """
     count = 0
     for cards in hand:
         if cards['type'] == 'joker':
@@ -168,6 +206,12 @@ def jokerAvailable(hand):
     return count
 
 def rebootAvailable(hand):
+    """
+    this method search in our handscards for rebootcards
+
+    :param hand: our handcards
+    :return: the number of the rebootcards
+    """
     count = 0
     for cards in hand:
         if cards['type'] == 'reboot':
@@ -175,6 +219,12 @@ def rebootAvailable(hand):
     return count
 
 def seeTroughAvailable(hand):
+    """
+        this method search in our handscards for seetroughcards
+
+        :param hand: our handcards
+        :return: the number of the seetroughcards
+        """
     count = 0
     for cards in hand:
         if cards['type'] == 'see-through':
@@ -182,6 +232,14 @@ def seeTroughAvailable(hand):
     return count
 
 def playJoker(fitCard, countJoker, cardValue):
+    """
+    This method plays the Jokercards
+
+    :param fitCard: the card that fits
+    :param countJoker: number of the jokercards
+    :param cardValue: value of the discarded cards
+    :return: the move-data
+    """
     joker = {
         "type": "joker",
         "color": "multi",
@@ -208,6 +266,11 @@ def playJoker(fitCard, countJoker, cardValue):
     return moveData
 
 def playReboot():
+    """
+    This Method plays the reboot card
+
+    :return: the move-data
+    """
     reboot = {
         "type": "reboot",
         "color": "multi",
@@ -219,7 +282,14 @@ def playReboot():
     moveData = Move('put', reboot, None, None, 'reason_value')
     return moveData
 
-def canPlaySeeTrough(hand, fitCard, searchedCards):
+def canPlaySeeTrough(hand, searchedCards):
+    """
+    this Method analasize if a seeTroughcard can be played
+
+    :param hand: our handcards
+    :param searchedCards: the card where it can play seeTrough
+    :return: all the seetrough cards that can be played
+    """
     allSeeTroughCards = []
     for searchedCard in searchedCards:
         for card in hand:
@@ -228,6 +298,12 @@ def canPlaySeeTrough(hand, fitCard, searchedCards):
     return allSeeTroughCards
 
 def playSeeTrough(allSeeTrough):
+    """
+    This Method plays the seeTroughcard
+
+    :param allSeeTrough: all seeThroughcards
+    :return: plays the seeTroughcard
+    """
     moveData = Move('put', allSeeTrough[0], None, None, 'reason_value')
 
     return moveData
